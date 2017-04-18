@@ -20,7 +20,11 @@ Route::get('/contact', 'PagesController@getContact');
 
 Route::get('/about', 'PagesController@getAbout');
 
-Route::resource('posts', 'PostController');
+
+Route::group(['middleware' => 'auth'], function()
+{
+    Route::resource('posts', 'PostController');
+});
 
 Auth::routes();
 
