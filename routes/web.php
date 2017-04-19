@@ -28,4 +28,7 @@ Route::group(['middleware' => 'auth'], function()
 
 Auth::routes();
 
+Route::get('login/instagram', ['as' => 'oauth.instagram', 'uses' => 'Auth\LoginController@redirectToProvider'] );
+Route::get('login/instagram/callback', 'Auth\LoginController@handleProviderCallback');
+
 Route::get('/home', 'HomeController@index');
