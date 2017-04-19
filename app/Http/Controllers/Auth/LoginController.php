@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use Session;
 use Socialite;
 
@@ -65,8 +66,10 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        // $user = Socialite::driver('instagram')->user();
+        $user = Socialite::with('instagram')->user();
+        // dd($user);
+        $accessTokenResponseBody = $user->accessTokenResponseBody;
 
-        // $user->token;
+        return redirect()->to($this->redirectTo);
     }
 }
