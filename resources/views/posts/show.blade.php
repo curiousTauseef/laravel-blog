@@ -21,6 +21,9 @@
                 <dt>Last Updated: </dt>
                 <dd>{{ date('M j, Y h:ia', strtotime($post->updated_at)) }}</dd>
             </dl>
+
+            <p class="text-center">{{ $post->category->name }}</a></p>
+
             <hr>
             <div class="row">
                 <div class="col-sm-6">

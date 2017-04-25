@@ -32,3 +32,9 @@ Route::get('login/instagram', ['as' => 'oauth.instagram', 'uses' => 'Auth\LoginC
 Route::get('login/instagram/callback', ['as' => 'oauth.instagram.callback', 'uses' => 'Auth\LoginController@handleProviderCallback']);
 
 Route::get('/home', 'HomeController@index');
+
+//categories
+Route::resource('categories', 'CategoryController', ['except' => ['create']]);
+
+//tags
+Route::resource('tags', 'TagController', ['except' => ['create']]);

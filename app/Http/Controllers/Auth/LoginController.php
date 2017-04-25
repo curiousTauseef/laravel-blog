@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Session;
 use Socialite;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -66,10 +67,19 @@ class LoginController extends Controller
      */
     public function handleProviderCallback()
     {
-        $user = Socialite::with('instagram')->user();
-        // dd($user);
-        $accessTokenResponseBody = $user->accessTokenResponseBody;
+        $socialuser = Socialite::with('instagram')->user();
+        $user = User::where('instagram_id', $socialuser->getId())->first();
 
+        // dd($socialuser);
+        if(!$user) {
+            User::create([
+                'instagram_id' => $socialuser->getId(),
+                'name' => $socialuser->getName(),
+                'email' => $socialuser->getId(),
+            ]);
+        };
+
+        auth()->login($user);
         return redirect()->to($this->redirectTo);
     }
 }
