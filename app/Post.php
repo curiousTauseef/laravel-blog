@@ -11,6 +11,6 @@ class Post extends Model
     }
     //function name pluralised if relationship is to many
     public function tags() {
-        return $this-belongsToMany('App\Tag');
+        return $this->belongsToMany('App\Tag');
     }
 }

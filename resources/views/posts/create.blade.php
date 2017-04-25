@@ -4,6 +4,7 @@
 
 @section('stylesheets')
     {!! Html::style('css/parsley.css') !!}
+    {!! Html::style('css/select2.min.css') !!}
 @endsection
 
 @section('content')
@@ -26,9 +27,18 @@
 
             <div class="form-group">
                 {{ Form::label('category_id', 'Category:') }}
-                <select name="category_id" class="form-control">
+                <select name="category_id" class="form-control" data-parsley-validate-if-empty>
                     @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
+                {{ Form::label('tags', 'Tags:') }}
+                <select name="tags[]" class="form-control select2" multiple="multiple">
+                    @foreach($tags as $tag)
+                    <option value="{{ $tag->id }}">{{ $tag->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -47,4 +57,6 @@
 
 @section('scripts')
     {!! Html::script('js/parsley.min.js') !!}
+    {!! Html::script('js/select2.min.js') !!}
+    {!! Html::script('js/main.js') !!}
 @endsection

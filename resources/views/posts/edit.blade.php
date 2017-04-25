@@ -2,6 +2,10 @@
 
 @section('title', ' | Edit Post')
 
+@section('stylesheets')
+    {!! Html::style('css/select2.min.css') !!}
+@endsection
+
 @section('content')
 
 <div class="row">
@@ -20,6 +24,11 @@
         <div class="form-group">
             {{ Form::label('category_id', 'Category:') }}
             {{ Form::select('category_id', $categories, $post->category_id, ['class' => 'form-control']) }}
+        </div>
+
+        <div class="form-group">
+            {{ Form::label('tags', 'Tags:') }}
+            {{ Form::select('tags[]', $tags, $post->tags->pluck('id')->toArray(), ['class' => 'form-control select2' , 'multiple' => 'multiple']) }}
         </div>
 
         <div class="form-group">
@@ -53,4 +62,9 @@
     {!! Form::close() !!}
 </div>
 
+@endsection
+
+@section('scripts')
+    {!! Html::script('js/select2.min.js') !!}
+    {!! Html::script('js/main.js') !!}
 @endsection

@@ -62,7 +62,8 @@ class TagController extends Controller
      */
     public function show($id)
     {
-        //
+        $tag = Tag::find($id);
+        return view('tags.show', compact('tag'));
     }
 
     /**
@@ -101,7 +102,7 @@ class TagController extends Controller
         //flash success message
         Session::flash('success', 'This tag was successfully saved.');
         //redirect to show page
-        return redirect()->route('tags.index');
+        return redirect()->route('tags.show', $tag->id);
     }
 
     /**
@@ -113,6 +114,8 @@ class TagController extends Controller
     public function destroy($id)
     {
         $tag = Tag::find($id); 
+
+        $tag->posts()->detach();
 
         $tag->delete();
 

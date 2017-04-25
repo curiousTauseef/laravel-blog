@@ -23,6 +23,9 @@
                 {!! Form::submit('Delete', ['class' => 'btn btn-danger']) !!}
             {!! Form::close() !!}
         </div>
+        <div class="form-group">
+            <a href="{!! URL::previous() !!}" class="btn btn-default">Back</a>
+        </div>
     </div>
 </div>
 
