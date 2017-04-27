@@ -7,12 +7,44 @@
 <div class="row">
     <div class="col-md-8">
         <h1>{{ $post->title }}</h1>
-        <p class="lead">{{ $post->body }}</p>
+        <p class="lead">{!! $post->body !!}</p>
         <hr>
         <div class="tags">
             @foreach($post->tags as $tag)
                 <span class="label label-default">{{$tag->name}}</span>
             @endforeach
+        </div>
+
+        <div class="">
+            <h3>Comments <small>{{ $post->comments->count() }}</small></h3>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Comment</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach ($post->comments as $comment)
+                    <tr>
+                        <td>{{ $comment->name }}</td>
+                        <td>{{ $comment->email }}</td>
+                        <td>{{ $comment->comment }}</td>
+                        <td>
+
+                        {!! Form::open(['route' => ['comments.destroy', $comment->id], 'method' => 'DELETE', 'style' => 'display: inline' ]) !!}
+                            {!! Form::button('<span class="glyphicon glyphicon-trash">', ['class' => 'btn btn-danger btn-xs', 'type' => 'submit']) !!}
+                        {!! Form::close() !!}
+
+                            <a href="{{ route('comments.edit', $comment->id) }}" class="btn btn-primary btn-xs"><span class="glyphicon glyphicon-pencil"></a></span>
+                            {{-- <a href="{{ route('comments.destroy', $comment->id) }}" class="btn btn-danger btn-xs"><span class="glyphicon glyphicon-trash"></a></span> --}}
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 

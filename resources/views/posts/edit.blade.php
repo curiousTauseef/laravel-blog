@@ -66,5 +66,6 @@
 
 @section('scripts')
     {!! Html::script('js/select2.min.js') !!}
+    {!! Html::script('js/tinymce/tinymce.min.js') !!}
     {!! Html::script('js/main.js') !!}
 @endsection

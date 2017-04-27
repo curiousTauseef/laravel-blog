@@ -39,3 +39,9 @@ Route::resource('categories', 'CategoryController', ['except' => ['create']]);
 
 //tags
 Route::resource('tags', 'TagController', ['except' => ['create']]);
+
+//comments
+Route::post('comments/{post_id}', ['uses' => 'CommentController@store', 'as' => 'comments.store']);
+Route::get('comments/{id}/edit', ['uses' => 'CommentController@edit', 'as' => 'comments.edit']);
+Route::put('comments/{id}', ['uses' => 'CommentController@update', 'as' => 'comments.update']);
+Route::delete('comments/{id}', ['uses' => 'CommentController@destroy', 'as' => 'comments.destroy']);
