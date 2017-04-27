@@ -7,6 +7,13 @@
 <div class="row">
     <div class="col-md-8">
         <h1>{{ $post->title }}</h1>
+
+        @if($post->image)
+        <div class="text-center">
+            <img class="featured-img" src="{{ asset('images/' . $post->image) }}" height="{{ $imageHeight }}" width="{{ $imageWidth }}">
+        </div>
+        @endif
+
         <p class="lead">{!! $post->body !!}</p>
         <hr>
         <div class="tags">

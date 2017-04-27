@@ -9,9 +9,8 @@
         <h1>{{ $post->title }}</h1>
         @if($post->image)
         <div class="text-center">
-            <img src="{{ asset('images/' . $post->image) }}" height="{{ $imageHeight }}" width="{{ $imageWidth }}">
+            <img class="featured-img" src="{{ asset('images/' . $post->image) }}" height="{{ $imageHeight }}" width="{{ $imageWidth }}">
         </div>
-
         @endif
 
         <p class="lead">{!! $post->body !!}</p>

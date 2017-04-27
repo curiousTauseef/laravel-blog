@@ -9,7 +9,7 @@
 @section('content')
 
 <div class="row">
-    {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT']) !!}
+    {!! Form::model($post, ['route' => ['posts.update', $post->id], 'method' => 'PUT', 'files' => true]) !!}
     <div class="col-md-8">
         <div class="form-group">
             {{ Form::label('title', 'Title:') }}
@@ -29,6 +29,11 @@
         <div class="form-group">
             {{ Form::label('tags', 'Tags:') }}
             {{ Form::select('tags[]', $tags, $post->tags->pluck('id')->toArray(), ['class' => 'form-control select2' , 'multiple' => 'multiple']) }}
+        </div>
+
+        <div class="form-group">
+            {{ Form::label('image', 'Featured Image:') }}
+            {{ Form::file('image', ['class' => 'form-control']) }}
         </div>
 
         <div class="form-group">
